@@ -46,12 +46,13 @@ try:
     results = cursor.fetchall()
     batch = 0
     for (file_name, table_name) in tables:
-        data = open(f"tpce/flat_out/{file_name}.txt", "r").readlines()
-        insert_queries = map(lambda x: create_insert_query(table_name, split_by_delimeter(x.strip())), data)
-        for insert_query in insert_queries:
+        data = open(f"tpce/flat_out/{file_name}.txt", "r")
+        for row in data:
+            insert_query = create_insert_query(table_name, split_by_delimeter(row.strip()))
             try:
                 cursor.execute(insert_query)
             except Exception as er:
+                data.close()
                 print(insert_query)
                 print(er)
                 exit()
@@ -60,6 +61,7 @@ try:
                 db_connection.commit()
                 print(f"Batch {batch} inserted")
                 batch = 0
+        data.close()
 
     
     # # Close the cursor and connection
