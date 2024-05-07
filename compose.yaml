@@ -12,5 +12,7 @@ services:
       MARIADB_DATABASE: ${DATABASE}
     networks:
       - app_db_network
+    ports:
+      - "3306:3306"
 networks:
   app_db_network:
