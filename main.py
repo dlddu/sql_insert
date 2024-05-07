@@ -13,7 +13,10 @@ config = {
 }
 
 # Tables
-tables = [("StatusType", "STATUS_TYPE"), ("ZipCode", "ZIP_CODE")]
+tables = [("StatusType", "STATUS_TYPE"), ("ZipCode", "ZIP_CODE"), ("TaxRate", "TAXRATE"), ("Sector", "SECTOR"), ("NewsItem", "NEWS_ITEM"), ("TradeType", "TRADE_TYPE"), \
+          ("Address", "ADDRESS"), ("Industry", "INDUSTRY"), ("Charge", "CHARGE"), ("Broker", "BROKER"), \
+          ("Company","COMPANY"), ("Customer","CUSTOMER"), ("Exchange","EXCHANGE"), \
+          ("CustomerAccount","CUSTOMER_ACCOUNT"), ("CustomerTaxrate","CUSTOMER_TAXRATE"), ("CommissionRate","COMMISSION_RATE"), ("CompanyCompetitor","COMPANY_COMPETITOR"), ("Financial","FINANCIAL"), ("NewsXRef","NEWS_XREF"), ("Security","SECURITY"), ("WatchList","WATCH_LIST")]
 
 def create_insert_query(table_name, data):
     return f'INSERT INTO {table_name} VALUES ("{str.join("\", \"", data)}")'
@@ -31,8 +34,10 @@ try:
     
     # # Execute a ddl query
     ddl_queries = open("ddl.sql", "r").readlines()
-    for ddl_query in ddl_queries:
+
+    for ddl_query in reversed(ddl_queries):
         cursor.execute(f"DROP TABLE IF EXISTS {ddl_query.split()[2].strip()}")
+    for ddl_query in ddl_queries:
         cursor.execute(ddl_query)
     
     # # Execute a insert query
@@ -42,7 +47,12 @@ try:
         data = open(f"tpce/flat_out/{file_name}.txt", "r").readlines()
         insert_queries = map(lambda x: create_insert_query(table_name, split_by_delimeter(x.strip())), data)
         for insert_query in insert_queries:
-            cursor.execute(insert_query)
+            try:
+                cursor.execute(insert_query)
+            except Exception as er:
+                print(insert_query)
+                print(er)
+                exit()
             batch += 1
             if batch % 1000 == 0:
                 db_connection.commit()
