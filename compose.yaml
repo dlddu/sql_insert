@@ -1,0 +1,16 @@
+services:
+  app:
+    image: python:3
+    networks:
+      - app_db_network
+  db:
+    image: mariadb
+    environment:
+      MARIADB_USER: ${USERNAME}
+      MARIADB_PASSWORD: ${PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DATABASE}
+    networks:
+      - app_db_network
+networks:
+  app_db_network:
