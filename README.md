@@ -2,6 +2,7 @@
 - ddl.sql, main.py 파일의 tables 변수 채우는 중
    - ddl.sql에 create table 쿼리 추가할 때는 꼭 한 줄로 추가해주세요
    - main.py 파일의 tables 변수에는 (파일 이름, 테이블 이름) 순으로 추가해주세요
+      - 파일은 tpce/flat_out 폴더 아래에 있습니다
 
 ## Prerequisite
 - Visual Studio Code 설치
