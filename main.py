@@ -17,7 +17,8 @@ tables = [("StatusType", "STATUS_TYPE"), ("ZipCode", "ZIP_CODE"), ("TaxRate", "T
           ("Address", "ADDRESS"), ("Industry", "INDUSTRY"), ("Charge", "CHARGE"), ("Broker", "BROKER"), \
           ("Company","COMPANY"), ("Customer","CUSTOMER"), ("Exchange","EXCHANGE"), \
           ("CustomerAccount","CUSTOMER_ACCOUNT"), ("CustomerTaxrate","CUSTOMER_TAXRATE"), ("CommissionRate","COMMISSION_RATE"), ("CompanyCompetitor","COMPANY_COMPETITOR"), ("Financial","FINANCIAL"), ("NewsXRef","NEWS_XREF"), ("Security","SECURITY"), ("WatchList","WATCH_LIST"), \
-          ("AccountPermission","ACCOUNT_PERMISSION"), ("HoldingSummary","HOLDING_SUMMARY"), ("WatchItem","WATCH_ITEM"), ("Trade", "TRADE"), ("DailyMarket", "DAILY_MARKET"), ("LastTrade", "LAST_TRADE")]
+          ("AccountPermission","ACCOUNT_PERMISSION"), ("HoldingSummary","HOLDING_SUMMARY"), ("WatchItem","WATCH_ITEM"), ("Trade", "TRADE"), ("DailyMarket", "DAILY_MARKET"), ("LastTrade", "LAST_TRADE"), \
+          ("Holding", "HOLDING"), ("HoldingHistory", "HOLDING_HISTORY"), ("CashTransaction", "CASH_TRANSACTION"), ("Settlement", "SETTLEMENT"), ("TradeHistory", "TRADE_HISTORY")]
 
 def create_insert_query(table_name, data):
     return f'INSERT INTO {table_name} VALUES ("{str.join("\", \"", data)}")'
