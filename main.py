@@ -13,13 +13,10 @@ config = {
 }
 
 # Tables
-tables = ["StatusType", "ZipCode"]
-
-def camel_case_to_snake_case(text):
-    return re.sub(r'(?<!^)(?=[A-Z])', '_', text).upper()
+tables = [("StatusType", "STATUS_TYPE"), ("ZipCode", "ZIP_CODE")]
 
 def create_insert_query(table_name, data):
-    return f'INSERT INTO {camel_case_to_snake_case(table_name)} VALUES ("{str.join("\", \"", data)}")'
+    return f'INSERT INTO {table_name} VALUES ("{str.join("\", \"", data)}")'
 
 def split_by_delimeter(text):
     return text.split("|")
@@ -41,9 +38,9 @@ try:
     # # Execute a insert query
     results = cursor.fetchall()
     batch = 0
-    for table in tables:
-        data = open(f"tpce/flat_out/{table}.txt", "r").readlines()
-        insert_queries = map(lambda x: create_insert_query(table, split_by_delimeter(x.strip())), data)
+    for (file_name, table_name) in tables:
+        data = open(f"tpce/flat_out/{file_name}.txt", "r").readlines()
+        insert_queries = map(lambda x: create_insert_query(table_name, split_by_delimeter(x.strip())), data)
         for insert_query in insert_queries:
             cursor.execute(insert_query)
             batch += 1
