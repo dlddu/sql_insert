@@ -16,4 +16,4 @@ ddl.sql, main.py 파일의 tables 변수 채우는 중
 ## 벤치마크 실행
 1. 데이터 생성이 완료되면, vscode의 devcontainer 기능으로 해당 폴더 열기
   - 맥 기준 Command + Shift + P => Open Folder in Container...
-3. main.py 파일 열어서 실행
+2. main.py 파일 열어서 실행
