@@ -20,3 +20,7 @@
 1. 데이터 생성이 완료되면, vscode의 devcontainer 기능으로 해당 폴더 열기
   - 맥 기준 Command + Shift + P => Open Folder in Container...
 2. main.py 파일 열어서 실행
+3. 로컬에서 충분히 테스트가 완료되면, dev container에서 벗어난 후 해당 폴더에서 docker-compose down 실행
+
+## 벤치마크 실행
+중간 발표 이후
