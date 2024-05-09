@@ -23,3 +23,6 @@
 
 ## 벤치마크 실행
 중간 발표 이후
+
+## 참고 자료
+https://github.com/Percona-Lab/tpce-mysql
