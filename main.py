@@ -8,7 +8,7 @@ load_dotenv()
 config = {
     'user': os.environ.get('USERNAME'),
     'password': os.environ.get('PASSWORD'),
-    'host': 'db',
+    'host': os.environ.get('HOST'),
     'db': os.environ.get('DATABASE'),
 }
 
@@ -29,7 +29,7 @@ def split_by_delimeter(text):
 # Connect to the MariaDB Server
 try:
     db_connection = pymysql.connect(**config)
-    print("Successfully connected to MariaDB!")
+    print("Successfully connected to DB!")
     
     # # Create a cursor object
     cursor = db_connection.cursor()
@@ -45,6 +45,7 @@ try:
     # # Execute a insert query
     results = cursor.fetchall()
     batch = 0
+    index = 1
     for (file_name, table_name) in tables:
         data = open(f"tpce/flat_out/{file_name}.txt", "r")
         for row in data:
@@ -59,8 +60,9 @@ try:
             batch += 1
             if batch % 1000 == 0:
                 db_connection.commit()
-                print(f"Batch {batch} inserted")
+                print(f"{index}: Batch {batch} inserted")
                 batch = 0
+                index += 1
         data.close()
 
     
@@ -70,4 +72,4 @@ try:
     db_connection.close()
     
 except pymysql.Error as e:
-    print(f"Error connecting to MariaDB: {e}")
+    print(f"Error connecting to DB: {e}")
