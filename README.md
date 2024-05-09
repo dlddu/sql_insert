@@ -16,11 +16,10 @@
    - 처음엔 테스트 목적으로 docker run -it --rm -v $(pwd)/tpce:/tpce big-data bash -c 'cd /tpce && ./bin/EGenLoader -t 1000 -f 1 -w 1' 정도의 옵션을 추천
 3. 2번의 명령어가 실행되면 flat_out 폴더 아래에 csv 형식의 데이터가 생성됨
 
-## 벤치마크 실행
+## 데이터 저장
 1. 데이터 생성이 완료되면, vscode의 devcontainer 기능으로 해당 폴더 열기
   - 맥 기준 Command + Shift + P => Open Folder in Container...
-2. main.py 파일 열어서 실행
-3. 로컬에서 충분히 테스트가 완료되면, dev container에서 벗어난 후 해당 폴더에서 docker-compose down 실행
+2. scripts 폴더 내의 sql 명령어들 실행
 
 ## 벤치마크 실행
 중간 발표 이후
