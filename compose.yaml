@@ -14,7 +14,7 @@ services:
     environment:
       MYSQL_USER: ${USERNAME}
       MYSQL_PASSWORD: ${PASSWORD}
-      MYSQL_ROOT_PASSWORD: tpce_root_password
+      MYSQL_ROOT_PASSWORD: tpce
       MYSQL_DATABASE: ${DATABASE}
     networks:
       - app_db_network
