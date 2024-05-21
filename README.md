@@ -13,7 +13,7 @@
 ## TPC-E 데이터 생성
 1. bash run.sh 실행
 2. docker run -it --rm -v $(pwd)/tpce:/tpce big-data bash -c 'cd /tpce && ./bin/EGenLoader'
-   - 처음엔 테스트 목적으로 docker run -it --rm -v $(pwd)/tpce:/tpce big-data bash -c 'cd /tpce && ./bin/EGenLoader -t 1000 -f 288000 -w 1' 정도의 옵션을 추천
+   - 처음엔 테스트 목적으로 docker run -it --rm -v $(pwd)/tpce:/tpce big-data bash -c 'cd /tpce && ./bin/EGenLoader -c 1000 -f 288000 -w 1' 정도의 옵션을 추천
 3. 2번의 명령어가 실행되면 flat_out 폴더 아래에 csv 형식의 데이터가 생성됨
 
 ## 데이터 저장
