@@ -1,18 +1,25 @@
 services:
-  app:
-    image: python:3
+  load-data:
+    image: big-data
     networks:
       - app_db_network
+    volumes:
+      - ./tpce:/work
+    working_dir: /work/scripts/mysql
+    depends_on:
+      - db
+    command: bash -c "sleep 15s; bash 0_run_scripts.sh"
   db:
-    image: mariadb
+    image: mysql
     environment:
-      MARIADB_USER: ${USERNAME}
-      MARIADB_PASSWORD: ${PASSWORD}
-      MARIADB_ROOT_PASSWORD: tpce_root_password
-      MARIADB_DATABASE: ${DATABASE}
+      MYSQL_USER: ${USERNAME}
+      MYSQL_PASSWORD: ${PASSWORD}
+      MYSQL_ROOT_PASSWORD: tpce_root_password
+      MYSQL_DATABASE: ${DATABASE}
     networks:
       - app_db_network
     ports:
       - "3306:3306"
+
 networks:
   app_db_network:

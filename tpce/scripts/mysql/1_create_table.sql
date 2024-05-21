@@ -138,7 +138,7 @@ CREATE TABLE commission_rate (
   cr_tt_id CHAR(3) NOT NULL,
   cr_ex_id CHAR(6) NOT NULL,
   cr_from_qty MEDIUMINT(7) NOT NULL CHECK (cr_from_qty >= 0),
-  cr_to_qty MEDIUMINT(7) NOT NULL CHECK (cr_to_qty > cr_from_qty),
+  cr_to_qty MEDIUMINT(7) NOT NULL, CHECK (cr_to_qty > cr_from_qty),
   cr_rate DECIMAL(5,2) NOT NULL CHECK (cr_rate >= 0),
   PRIMARY KEY (cr_c_tier, cr_tt_id, cr_ex_id, cr_from_qty)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

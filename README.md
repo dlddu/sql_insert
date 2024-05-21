@@ -11,15 +11,13 @@
    - 맥 기준 brew install --cask docker
 
 ## TPC-E 데이터 생성
-1. bash run.sh 실행
+1. bash build_tpce.sh 실행
 2. docker run -it --rm -v $(pwd)/tpce:/tpce big-data bash -c 'cd /tpce && ./bin/EGenLoader'
-   - 처음엔 테스트 목적으로 docker run -it --rm -v $(pwd)/tpce:/tpce big-data bash -c 'cd /tpce && ./bin/EGenLoader -c 1000 -f 288000 -w 1' 정도의 옵션을 추천
+   - 처음엔 테스트 목적으로 docker run -it --rm -v $(pwd)/tpce:/tpce big-data bash -c 'cd /tpce && ./bin/EGenLoader -c 1000 -t 1000 -f 288000 -w 1' 정도의 옵션을 추천
 3. 2번의 명령어가 실행되면 flat_out 폴더 아래에 csv 형식의 데이터가 생성됨
 
 ## 데이터 저장
-1. 데이터 생성이 완료되면, vscode의 devcontainer 기능으로 해당 폴더 열기
-  - 맥 기준 Command + Shift + P => Open Folder in Container...
-2. scripts 폴더 내의 sql 명령어들 실행
+1. 데이터 생성이 완료되면, docker compose up -d로 db 띄우기 및 데이터 적재
 
 ## 벤치마크 실행
 중간 발표 이후

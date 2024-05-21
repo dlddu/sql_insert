@@ -1,2 +1,6 @@
 .DS_Store
-./tpce/flat_out/*
+./tpce/flat_out
+./tpce/bin
+./tpce/obj
+./tpce/lib
+./tpce/*.log
