@@ -13,4 +13,4 @@ docker compose down -v && docker compose up -d &&
 ### 벤치마크 프로그램 (SimpleTest) 빌드
 docker build . -f Dockerfile_SimpleTest -t percona
 ### 벤치마크 프로그램을 실행할 수 있는 컨테이너 실행 (벤치마크는 알아서 실행하기)
-docker run -it --rm -w /tpce-mysql percona
+docker run -it --rm -w /tpce-mysql --network $(basename $(pwd))_app_db_network percona
